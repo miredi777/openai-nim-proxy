@@ -26,10 +26,12 @@ def chat_completions():
         if data.get('model') in model_mapping:
             data['model'] = model_mapping[data['model']]
         
+        # IGNORAR la API key del cliente, usar siempre la de Nvidia
         # Preparar headers para Nvidia
         headers = {
             'Authorization': f'Bearer {NVIDIA_API_KEY}',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
         }
         
         # Hacer solicitud a Nvidia NIM
